@@ -1,5 +1,7 @@
 package com.jcaa.usersmanagement.infrastructure.entrypoint.rest.mapper;
 
+import com.jcaa.usersmanagement.application.service.dto.command.LoginCommand;
+import com.jcaa.usersmanagement.infrastructure.entrypoint.rest.dto.request.LoginRestRequest;
 import com.jcaa.usersmanagement.application.service.dto.command.CreateUserCommand;
 import com.jcaa.usersmanagement.application.service.dto.command.DeleteUserCommand;
 import com.jcaa.usersmanagement.application.service.dto.command.UpdateUserCommand;
@@ -40,6 +42,11 @@ public class UserRestMapper {
 
   public DeleteUserCommand toDeleteCommand(final String id) {
     return new DeleteUserCommand(id);
+  }
+
+
+  public LoginCommand toLoginCommand(final LoginRestRequest request) {
+    return new LoginCommand(request.email(), request.password());
   }
 
   public UserRestResponse toResponse(final UserModel user) {

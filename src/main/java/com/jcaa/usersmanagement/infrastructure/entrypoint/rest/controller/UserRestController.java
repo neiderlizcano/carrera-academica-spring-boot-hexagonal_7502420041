@@ -28,6 +28,9 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import com.jcaa.usersmanagement.application.port.in.LoginUseCase;
+import com.jcaa.usersmanagement.application.service.dto.command.LoginCommand;
+import com.jcaa.usersmanagement.infrastructure.entrypoint.rest.dto.request.LoginRestRequest;
 
 @RestController
 @RequestMapping("/api/users")
@@ -39,12 +42,20 @@ public class UserRestController implements UserRestControllerDocs {
   private final DeleteUserUseCase deleteUserUseCase;
   private final GetUserByIdUseCase getUserByIdUseCase;
   private final GetAllUsersUseCase getAllUsersUseCase;
+  private final LoginUseCase loginUseCase;
 
   @PostMapping
   @ResponseStatus(HttpStatus.CREATED)
   public UserRestResponse create(@Valid @RequestBody final CreateUserRestRequest request) {
     final CreateUserCommand command = UserRestMapper.toCreateCommand(request);
     final UserModel user = createUserUseCase.execute(command);
+    return UserRestMapper.toResponse(user);
+  }
+
+  @PostMapping("/login")
+  public UserRestResponse login(@Valid @RequestBody final LoginRestRequest request) {
+    final LoginCommand command = UserRestMapper.toLoginCommand(request);
+    final UserModel user = loginUseCase.execute(command);
     return UserRestMapper.toResponse(user);
   }
 

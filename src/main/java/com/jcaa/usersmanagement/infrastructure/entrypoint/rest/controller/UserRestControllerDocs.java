@@ -16,6 +16,7 @@ import jakarta.validation.Valid;
 import java.util.List;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
+import com.jcaa.usersmanagement.infrastructure.entrypoint.rest.dto.request.LoginRestRequest;
 
 /**
  * Contrato OpenAPI / Swagger para {@link UserRestController}.
@@ -67,6 +68,41 @@ public interface UserRestControllerDocs {
                 schema = @Schema(implementation = ApiErrorResponse.class)))
   })
   UserRestResponse create(@Valid @RequestBody CreateUserRestRequest request);
+
+    @Operation(
+            summary = "Login usuario",
+            description = "Valida las credenciales de un usuario activo y retorna sus datos básicos.")
+    @ApiResponses({
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "Login exitoso.",
+                    content =
+                    @Content(
+                            mediaType = "application/json",
+                            schema = @Schema(implementation = UserRestResponse.class))),
+            @ApiResponse(
+                    responseCode = "400",
+                    description = "Datos de entrada inválidos.",
+                    content =
+                    @Content(
+                            mediaType = "application/json",
+                            schema = @Schema(implementation = ApiErrorResponse.class))),
+            @ApiResponse(
+                    responseCode = "401",
+                    description = "Credenciales inválidas o usuario inactivo.",
+                    content =
+                    @Content(
+                            mediaType = "application/json",
+                            schema = @Schema(implementation = ApiErrorResponse.class))),
+            @ApiResponse(
+                    responseCode = "500",
+                    description = "Error interno del servidor.",
+                    content =
+                    @Content(
+                            mediaType = "application/json",
+                            schema = @Schema(implementation = ApiErrorResponse.class)))
+    })
+    UserRestResponse login(@Valid @RequestBody LoginRestRequest request);
 
   // ─────────────────────────────────────────────────────────────────────────────
   // GET /api/users
