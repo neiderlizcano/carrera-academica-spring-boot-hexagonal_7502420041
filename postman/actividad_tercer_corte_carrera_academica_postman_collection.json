@@ -1,0 +1,362 @@
+{
+  "info": {
+    "_postman_id": "carrera-academica-api-hexagonal-7502420041",
+    "name": "Carrera Académica API RESTful - Spring Boot Hexagonal",
+    "description": "Colección Postman para la actividad II corte. Incluye CURL de login, CRUD de usuarios y CRUDL de carreras académicas.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Usuarios",
+      "item": [
+        {
+          "name": "POST - Login usuario",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"neider@test.com\",\n  \"password\": \"Admin1234!\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/users/login",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "users",
+                "login"
+              ]
+            },
+            "description": "CURL:\ncurl -X POST \"http://localhost:8080/api/users/login\" -H \"accept: application/json\" -H \"Content-Type: application/json\" -d \"{\\\"email\\\":\\\"neider@test.com\\\",\\\"password\\\":\\\"Admin1234!\\\"}\""
+          }
+        },
+        {
+          "name": "POST - Crear usuario",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"usr-001\",\n  \"name\": \"Neider Lizcano\",\n  \"email\": \"neider@test.com\",\n  \"password\": \"Admin1234!\",\n  \"role\": \"ADMIN\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/users",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "users"
+              ]
+            },
+            "description": "CURL:\ncurl -X POST \"http://localhost:8080/api/users\" -H \"accept: application/json\" -H \"Content-Type: application/json\" -d \"{\\\"id\\\":\\\"usr-001\\\",\\\"name\\\":\\\"Neider Lizcano\\\",\\\"email\\\":\\\"neider@test.com\\\",\\\"password\\\":\\\"Admin1234!\\\",\\\"role\\\":\\\"ADMIN\\\"}\""
+          }
+        },
+        {
+          "name": "GET - Usuario por ID",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/users/{{userId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "users",
+                "{{userId}}"
+              ]
+            },
+            "description": "CURL:\ncurl -X GET \"http://localhost:8080/api/users/usr-001\" -H \"accept: application/json\""
+          }
+        },
+        {
+          "name": "PUT - Actualizar usuario",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Neider Lizcano\",\n  \"email\": \"neider@test.com\",\n  \"password\": \"Admin1234!\",\n  \"role\": \"ADMIN\",\n  \"status\": \"ACTIVE\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/users/{{userId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "users",
+                "{{userId}}"
+              ]
+            },
+            "description": "CURL:\ncurl -X PUT \"http://localhost:8080/api/users/usr-001\" -H \"accept: application/json\" -H \"Content-Type: application/json\" -d \"{\\\"name\\\":\\\"Neider Lizcano\\\",\\\"email\\\":\\\"neider@test.com\\\",\\\"password\\\":\\\"Admin1234!\\\",\\\"role\\\":\\\"ADMIN\\\",\\\"status\\\":\\\"ACTIVE\\\"}\""
+          }
+        },
+        {
+          "name": "DELETE - Eliminar usuario",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "accept",
+                "value": "*/*"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/users/{{userId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "users",
+                "{{userId}}"
+              ]
+            },
+            "description": "CURL:\ncurl -X DELETE \"http://localhost:8080/api/users/usr-001\" -H \"accept: */*\""
+          }
+        },
+        {
+          "name": "GET - Listar usuarios",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/users",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "users"
+              ]
+            },
+            "description": "CURL:\ncurl -X GET \"http://localhost:8080/api/users\" -H \"accept: application/json\""
+          }
+        }
+      ]
+    },
+    {
+      "name": "Carreras Académicas",
+      "item": [
+        {
+          "name": "POST - Crear carrera académica",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"Ingeniería de Software\",\n  \"numCreditos\": 160,\n  \"numAsignaturas\": 52,\n  \"numSemestres\": 10,\n  \"nivelFormacion\": \"Pregrado\",\n  \"titulo\": \"Ingeniero de Software\",\n  \"valorSemestre\": 3500000,\n  \"universidad\": \"Universidad de Cartagena\",\n  \"esAcreditada\": true,\n  \"perfiles\": \"Desarrollo web, bases de datos, arquitectura de software y gestión de proyectos tecnológicos.\",\n  \"areaConocimiento\": \"Ingeniería\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/carreras-academicas",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "carreras-academicas"
+              ]
+            },
+            "description": "CURL:\ncurl -X POST \"http://localhost:8080/api/carreras-academicas\" -H \"accept: application/json\" -H \"Content-Type: application/json\" -d \"{\\\"nombre\\\":\\\"Ingeniería de Software\\\",\\\"numCreditos\\\":160,\\\"numAsignaturas\\\":52,\\\"numSemestres\\\":10,\\\"nivelFormacion\\\":\\\"Pregrado\\\",\\\"titulo\\\":\\\"Ingeniero de Software\\\",\\\"valorSemestre\\\":3500000,\\\"universidad\\\":\\\"Universidad de Cartagena\\\",\\\"esAcreditada\\\":true,\\\"perfiles\\\":\\\"Desarrollo web, bases de datos, arquitectura de software y gestión de proyectos tecnológicos.\\\",\\\"areaConocimiento\\\":\\\"Ingeniería\\\"}\""
+          }
+        },
+        {
+          "name": "GET - Carrera académica por ID",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/carreras-academicas/{{carreraId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "carreras-academicas",
+                "{{carreraId}}"
+              ]
+            },
+            "description": "CURL:\ncurl -X GET \"http://localhost:8080/api/carreras-academicas/1\" -H \"accept: application/json\""
+          }
+        },
+        {
+          "name": "PUT - Actualizar carrera académica",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"Ingeniería de Software Actualizada\",\n  \"numCreditos\": 165,\n  \"numAsignaturas\": 54,\n  \"numSemestres\": 10,\n  \"nivelFormacion\": \"Pregrado\",\n  \"titulo\": \"Ingeniero de Software\",\n  \"valorSemestre\": 3600000,\n  \"universidad\": \"Universidad de Cartagena\",\n  \"esAcreditada\": true,\n  \"perfiles\": \"Desarrollo web, backend, frontend, bases de datos y arquitectura hexagonal.\",\n  \"areaConocimiento\": \"Ingeniería\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/carreras-academicas/{{carreraId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "carreras-academicas",
+                "{{carreraId}}"
+              ]
+            },
+            "description": "CURL:\ncurl -X PUT \"http://localhost:8080/api/carreras-academicas/1\" -H \"accept: application/json\" -H \"Content-Type: application/json\" -d \"{\\\"nombre\\\":\\\"Ingeniería de Software Actualizada\\\",\\\"numCreditos\\\":165,\\\"numAsignaturas\\\":54,\\\"numSemestres\\\":10,\\\"nivelFormacion\\\":\\\"Pregrado\\\",\\\"titulo\\\":\\\"Ingeniero de Software\\\",\\\"valorSemestre\\\":3600000,\\\"universidad\\\":\\\"Universidad de Cartagena\\\",\\\"esAcreditada\\\":true,\\\"perfiles\\\":\\\"Desarrollo web, backend, frontend, bases de datos y arquitectura hexagonal.\\\",\\\"areaConocimiento\\\":\\\"Ingeniería\\\"}\""
+          }
+        },
+        {
+          "name": "DELETE - Eliminar carrera académica",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "accept",
+                "value": "*/*"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/carreras-academicas/{{carreraId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "carreras-academicas",
+                "{{carreraId}}"
+              ]
+            },
+            "description": "CURL:\ncurl -X DELETE \"http://localhost:8080/api/carreras-academicas/1\" -H \"accept: */*\""
+          }
+        },
+        {
+          "name": "GET - Listar carreras académicas",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/carreras-academicas",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "carreras-academicas"
+              ]
+            },
+            "description": "CURL:\ncurl -X GET \"http://localhost:8080/api/carreras-academicas\" -H \"accept: application/json\""
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8080",
+      "type": "string"
+    },
+    {
+      "key": "userId",
+      "value": "usr-001",
+      "type": "string"
+    },
+    {
+      "key": "carreraId",
+      "value": "1",
+      "type": "string"
+    }
+  ]
+}
